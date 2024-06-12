@@ -17,13 +17,18 @@ const releasesApi = `https://api.github.com/repos/${repo}/releases/${tag}`;
 console.info("api:", releasesApi);
 
 const gh_token = env.INPUT_TOKEN || env.GITHUB_TOKEN || "";
+const headers = {
+    "User-Agent": "curl/8.8",
+    Accept: "application/vnd.github+json",
+    // "X-GitHub-Api-Version": "2022-11-28",
+};
+
+if (gh_token) {
+    headers.Authorization = `Bearer ${gh_token}`;
+}
+
 const options = {
-    headers: {
-        "User-Agent": "curl/8.8",
-        Authorization: `Bearer ${gh_token}`,
-        Accept: "application/vnd.github+json",
-        // "X-GitHub-Api-Version": "2022-11-28",
-    },
+    headers: headers,
 };
 
 https

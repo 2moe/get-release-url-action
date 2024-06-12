@@ -40,7 +40,7 @@ module.exports.writeToFile = () =>
  * @param {string} value
  */
 function setUrlOutput(value) {
-    action.setOutput("url", value);
+    return action.setOutput("url", value);
 }
 
 module.exports.setOutput = setUrlOutput;

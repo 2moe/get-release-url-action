@@ -1,0 +1,46 @@
+name: Get Release URL
+author: 2moe
+description: Invoke the GitHub API to get releases, and obtain the URL for a specific platform from them.
+branding:
+  color: "orange"
+  icon: "download"
+inputs:
+  repo:
+    required: false
+    description: |
+      Full name of github repository.
+      Default is the current repository.
+      format: [owner]/[repo-name]
+      e.g., actions/runner
+  tag:
+    default: latest
+    description: tag for releases, default is "latest"
+  include:
+    required: true
+    description: |
+      Matches the file names that need to be obtained from the file URL.
+      Suppose the releases include "aarch64-apple-darwin.dmg", "x86_64-unknown-linux-musl.tar.zst", "x86_64-pc-windows-msvc.zip".
+      If you need to match x86_64 linux, you can use `include: x86_64-unknown-linux-musl`.
+      If you need multiple values for matching, use a multi-line string, one per line.
+      The first line uses x86_64, the second line uses musl.
+  exclude:
+    required: false
+    description: |
+      Suppose the releases include "riscv64gc-unknown-linux-gnu.tzst", "riscv64gc-unknown-linux-musl.tzst".
+      If you need to match musl and filter out gnu, you can use `include: linux`, `exclude: gnu`.
+      If you need to filter out multiple results, use a multi-line string, one per line.
+  token:
+    required: false
+    description: The token should only be set when accessing a private repository.
+  write-to-file:
+    required: false
+    description: |
+      If you don't want to use `github_output` and instead want to write the URL to url.txt, then please use `write-to-file: url.txt`.
+      You can change url.txt to another file.
+outputs:
+  url:
+    description: url matched by `include` and `exclude`.
+
+runs:
+  using: node20
+  main: src/main.js

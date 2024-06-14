@@ -1,4 +1,4 @@
-name: pack
+name: release
 
 env:
   branch: v0

@@ -2,9 +2,9 @@ name: release
 
 env:
   branch: v0
-  tag: "v0.0.2-beta.0"
+  tag: "v0.0.2"
   # commit_msg: "ci(action): merge dev & update wasm + dist/index.js"
-  commit_msg: "docs(readme): en US -> en"
+  commit_msg: "test(ci): release v0.0.2"
 
 on:
   push:

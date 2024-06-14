@@ -1,9 +1,10 @@
 # Get Release URL Action
 
-| Languages/語言              | ID         |
-| --------------------------- | ---------- |
-| English                     | en-Latn-US |
-| [中文](./docs/Readme-zh.md) | zh-Hans-CN |
+| Languages/語言                                 | ID         |
+| ---------------------------------------------- | ---------- |
+| English (US)                                   | en-Latn-US |
+| [中文 (Simplified)](./docs/Readme-zh.md)       | zh-Hans-CN |
+| [中文 (Traditional)](./docs/Readme-zh-Hant.md) | zh-Hant-TW |
 
 Get the URL for a specific platform from the GitHub releases API.
 

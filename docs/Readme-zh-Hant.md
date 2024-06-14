@@ -2,40 +2,40 @@
 
 | Languages/語言                            | ID         |
 | ----------------------------------------- | ---------- |
-| 中文 (Simplified)                         | zh-Hans-CN |
+| 中文 (Traditional)                       | zh-Hant-TW |
 | [English (US)](../Readme.md)              | en-Latn-US |
-| [中文 (Traditional)](./Readme-zh-Hant.md) | zh-Hant-TW |
+| [中文 (Simplified)](./Readme-zh.md)      | zh-Hans-CN |
 
-从 github releases api 中获取特定的平台的 url。
+從 github releases api 中獲取特定的平臺的 url。
 
-比如说，某开源项目发布了 arm64 macOS, x64 Windows 以及 x64 Linux 的软件包。
+比如說，某開源專案釋出了 arm64 macOS, x64 Windows 以及 x64 Linux 的軟體包。
 
-您可以匹配 x64, 过滤掉 Windows，最后得到的就是 x64 Linux 软件包的 url。
+您可以匹配 x64, 過濾掉 Windows，最後得到的就是 x64 Linux 軟體包的 url。
 
 ## Inputs
 
-| Inputs        | 描述                                                               | 默认值 |
+| Inputs        | 描述                                                               | 預設值 |
 | ------------- | ------------------------------------------------------------------ | ------ |
-| repo          | github 仓库的名称. e.g., actions/runner                            |        |
+| repo          | github 倉庫的名稱. e.g., actions/runner                            |        |
 | tag           | Tag for releases                                                   | latest |
-| include       | 匹配项，可以用多行字符串来指定多个匹配项                           |        |
-| exclude       | 过滤项                                                             |        |
-| token         | 只有在访问私有仓库时，才需要 token                                 |        |
-| write-to-file | 将 url 写入到特定文件（e.g., url.txt）, 而不是输出到 github output |        |
+| include       | 匹配項，可以用多行字串來指定多個匹配項                           |        |
+| exclude       | 過濾項                                                             |        |
+| token         | 只有在訪問私有倉庫時，才需要 token                                 |        |
+| write-to-file | 將 url 寫入到特定檔案（e.g., url.txt）, 而不是輸出到 github output |        |
 
 ## Outputs
 
 | Outputs | Description                                                    | Default |
 | ------- | -------------------------------------------------------------- | ------- |
-| url     | 通过匹配与过滤后得到的最终网址（要求: write-to-file 的值为空） |         |
+| url     | 透過匹配與過濾後得到的最終網址（要求: write-to-file 的值為空） |         |
 
 ## Get Started
 
-假设某项目的 releases 网址为： <https://github.com/actions/runner/releases>
+假設某專案的 releases 網址為： <https://github.com/actions/runner/releases>
 
-我们从中得到了 `repo: actions/runner`
+我們從中得到了 `repo: actions/runner`
 
-文件列表：
+檔案列表：
 
 - linux-arm-2.317.0.tar.gz
 - linux-arm64-2.317.0.tar.gz
@@ -45,7 +45,7 @@
 - win-arm64-2.317.0.zip
 - win-x64-2.317.0.zip
 
-如需获取 linux-arm64 的url, 那可以这样子做：
+如需獲取 linux-arm64 的url, 那可以這樣子做：
 
 ```yaml
 name: test
@@ -78,7 +78,7 @@ with:
 
 - type: string
 
-github 仓库的名称，若为空，则使用当前项目仓库。（`env.GITHUB_REPOSITORY`）
+github 倉庫的名稱，若為空，則使用當前專案倉庫。（`env.GITHUB_REPOSITORY`）
 
 ### tag
 
@@ -90,7 +90,7 @@ with:
 - type: string
 - default: latest
 
-github releases 的 tag (标签)，e.g., `v2.1.0`。
+github releases 的 tag (標籤)，e.g., `v2.1.0`。
 
 ### include
 
@@ -104,9 +104,9 @@ with:
 - type: string
 - required: true
 
-匹配文件列表中包含的文件名。
+匹配檔案列表中包含的檔名。
 
-假设 releases 文件列表为:
+假設 releases 檔案列表為:
 
 - aarch64-apple-darwin.dmg
 - riscv64gc-unknown-linux-musl.tar.zst
@@ -120,7 +120,7 @@ with:
   include: riscv64gc-unknown-linux-musl
 ```
 
-如需使用多个值进行匹配，请使用多行字符串，每行一个。
+如需使用多個值進行匹配，請使用多行字串，每行一個。
 第一行使用riscv64，第二行使用musl。
 
 ```yaml
@@ -143,16 +143,16 @@ with:
 - type: string
 - required: false
 
-过滤掉特定项。
+過濾掉特定項。
 
-一般情况下，要与 include 一同使用。
+一般情況下，要與 include 一同使用。
 
-假设文件列表为:
+假設檔案列表為:
 
 - riscv64gc-unknown-linux-gnu.tzst
 - riscv64gc-unknown-linux-musl.tzst".
 
-如果想要匹配 "musl", 过滤掉 "gnu"，那可以这样子做：
+如果想要匹配 "musl", 過濾掉 "gnu"，那可以這樣子做：
 
 ```yaml
 with:
@@ -162,7 +162,7 @@ with:
   exclude: gnu
 ```
 
-如需使用多个值进行过滤，则请使用多行字符串。
+如需使用多個值進行過濾，則請使用多行字串。
 
 ### token
 
@@ -173,9 +173,9 @@ with:
 
 - type: string
 
-只有在访问私有仓库时，才需要 TOKEN。
+只有在訪問私有倉庫時，才需要 TOKEN。
 
-若为空，则从 `env.GITHUB_TOKEN` 获取。
+若為空，則從 `env.GITHUB_TOKEN` 獲取。
 
 ### write-to-file
 
@@ -186,4 +186,4 @@ with:
 
 - type: string
 
-如果不想要通过 `${{steps."step-id".outputs.url}}` 来获取 url，那也可以将 url 写入到特定的文件，e.g., a.txt.
+如果不想要透過 `${{steps."step-id".outputs.url}}` 來獲取 url，那也可以將 url 寫入到特定的檔案，e.g., a.txt.

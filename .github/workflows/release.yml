@@ -1,0 +1,43 @@
+name: pack
+
+env:
+  branch: v0
+  tag: "v0.0.2-beta.0"
+  # commit_msg: "ci(action): merge dev & update wasm + dist/index.js"
+  commit_msg: "docs(readme): en US -> en"
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - ".github/workflows/release.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -g pnpm
+
+      - name: git-merge-branch
+        run: |
+          npm run ci:set-git-bot
+          git fetch origin ${{env.branch}}
+          git checkout ${{env.branch}}
+          git merge --squash -X theirs dev --allow-unrelated-histories
+      - name: git-commit
+        run: |
+          git add .
+          git commit -m '${{env.commit_msg}}'
+      - name: git-push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{env.branch}}
+      - name: release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{env.tag}}
+          target_commitish: ${{env.branch}}
+          generate_release_notes: true

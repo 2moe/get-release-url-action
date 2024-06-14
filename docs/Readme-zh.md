@@ -2,8 +2,8 @@
 
 | Languages/語言                            | ID         |
 | ----------------------------------------- | ---------- |
-| 中文 (Simplified)                         | zh-Hans-CN |
-| [English (US)](../Readme.md)              | en-Latn-US |
+| 中文                                      | zh-Hans-CN |
+| [English](../Readme.md)                   | en-Latn-US |
 | [中文 (Traditional)](./Readme-zh-Hant.md) | zh-Hant-TW |
 
 从 github releases api 中获取特定的平台的 url。
